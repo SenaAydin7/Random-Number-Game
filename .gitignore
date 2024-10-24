@@ -8,6 +8,14 @@
 # testing
 /coverage
 
+#src
+App.test.js
+index.css
+reportWebVitals.js
+setupTests.js
+
+#public
+
 # production
 /build
 
