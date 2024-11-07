@@ -8,11 +8,25 @@ const RandomNumber = () => {
   const [correctSequence, setCorrectSequence] = useState('');
   const [isCorrect, setIsCorrect] = useState(null);
   const [showInput, setShowInput] = useState(false);
-  const [showNumbers, setShowNumbers] = useState(false); // Diziyi göstermek için
-  const [showH2, setShowH2] = useState(true); // h2'yi kontrol etmek için
+  const [showNumbers, setShowNumbers] = useState(false); 
+  const [showH2, setShowH2] = useState(true); 
 
   useEffect(() => {
-    const randomNumbers = Array.from({ length: 8 }, () => Math.floor(Math.random() * 9) + 1);
+
+    let lastNumber = null;
+
+    const generateRandomNumber = () => {
+      let randomNum;
+      do {
+        randomNum = Math.floor(Math.random() * 9) + 1;
+      } while (randomNum === lastNumber); // Bir önceki sayıyla aynıysa tekrar üret
+      lastNumber = randomNum; // Son üretilen sayıyı güncelle
+      return randomNum;
+    };
+
+    const randomNumArray = Math.floor(Math.random() * 3) + 8;
+    
+    const randomNumbers = Array.from({ length: randomNumArray }, generateRandomNumber);
     setNumbers(randomNumbers);
 
     let index = 0;
@@ -23,7 +37,7 @@ const RandomNumber = () => {
       } else {
         clearInterval(intervalId);
         setShowInput(true);
-        setShowH2(false); // Son sayı gösterildiğinde h2'yi gizle
+        setShowH2(false); 
         checkSequence(randomNumbers);
       }
     }, 1000);
