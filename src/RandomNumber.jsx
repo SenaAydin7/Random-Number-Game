@@ -19,13 +19,13 @@ const RandomNumber = () => {
       let randomNum;
       do {
         randomNum = Math.floor(Math.random() * 9) + 1;
-      } while (randomNum === lastNumber); // Bir önceki sayıyla aynıysa tekrar üret
-      lastNumber = randomNum; // Son üretilen sayıyı güncelle
+      } while (randomNum === lastNumber); 
+      lastNumber = randomNum; 
       return randomNum;
     };
 
     const randomNumArray = Math.floor(Math.random() * 3) + 8;
-    
+
     const randomNumbers = Array.from({ length: randomNumArray }, generateRandomNumber);
     setNumbers(randomNumbers);
 
